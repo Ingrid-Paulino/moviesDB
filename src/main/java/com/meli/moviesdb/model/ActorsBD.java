@@ -3,7 +3,7 @@ package com.meli.moviesdb.model;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-public class Actors {
+public class ActorsBD {
     private UUID id_pk = UUID.randomUUID();
     private Timestamp created_at;
     private Timestamp updated_at;
