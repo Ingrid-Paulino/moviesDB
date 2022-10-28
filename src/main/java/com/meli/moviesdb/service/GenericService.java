@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -22,5 +23,10 @@ public abstract class GenericService<T extends GenericBaseEntity>
     @Override
       public T save(T entity) {
         return (T) genericRepo.save(entity);
+    }
+
+    @Override
+    public List<T> findAll() {
+        return genericRepo.findAll();
     }
 }
