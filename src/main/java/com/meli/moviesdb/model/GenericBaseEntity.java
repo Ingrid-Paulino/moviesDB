@@ -14,14 +14,14 @@ import java.util.UUID;
 @MappedSuperclass
 public class GenericBaseEntity implements Serializable {
     @Id
-    @GeneratedValue
-    private UUID id_pk;
-    @Column
+    //@GeneratedValue
+    private UUID id_pk = UUID.randomUUID();
+    @Column(nullable = false)
     @Version
     private int version;
-    @Column
+    @Column(nullable = false)
     private LocalDateTime createdAt;
-    @Column
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
     public GenericBaseEntity() {

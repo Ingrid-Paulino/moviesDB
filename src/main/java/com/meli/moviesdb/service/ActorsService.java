@@ -2,7 +2,6 @@ package com.meli.moviesdb.service;
 
 import com.meli.moviesdb.model.ActorsBD;
 import com.meli.moviesdb.repository.IActorsRepo;
-import com.meli.moviesdb.repository.IGenericRepo;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
