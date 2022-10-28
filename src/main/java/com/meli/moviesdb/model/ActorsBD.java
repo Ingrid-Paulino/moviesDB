@@ -10,8 +10,8 @@ import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-//@Getter
-//@Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -27,7 +27,7 @@ public class ActorsBD extends GenericBaseEntity {
     @Column(nullable = false)
     private String first_name;
     @Column(nullable = false)
-    private Double last_name;
+    private String last_name;
     @Column(nullable = false)
     private Double rating;
     @Column

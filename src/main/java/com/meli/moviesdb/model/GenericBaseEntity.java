@@ -13,8 +13,9 @@ import java.util.UUID;
 @Setter
 @MappedSuperclass
 public class GenericBaseEntity implements Serializable {
-    @Id @GeneratedValue
-    private UUID id_pk = UUID.randomUUID();
+    @Id
+    @GeneratedValue
+    private UUID id_pk;
     @Column
     @Version
     private int version;
