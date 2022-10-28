@@ -1,1 +1,1 @@
-# moviesDB
+# crud-generic-java
