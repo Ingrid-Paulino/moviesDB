@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public class ActorsService extends GenericAbstractBaseRepositoryImpl<ActorsBD> implements IActorsService{
+public class ActorsService extends GenericService<ActorsBD> implements IActorsService{
     private IActorsRepo actorsRepo;
     public ActorsService(IActorsRepo actorRepo) {
         super(actorRepo);

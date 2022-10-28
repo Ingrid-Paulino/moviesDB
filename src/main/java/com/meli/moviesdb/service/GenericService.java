@@ -9,13 +9,13 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public abstract class GenericAbstractBaseRepositoryImpl<T extends GenericBaseEntity>
+public abstract class GenericService<T extends GenericBaseEntity>
         implements IGenericService<T>{
 
     private IGenericRepo<T> genericRepo;
 
     @Autowired
-       public GenericAbstractBaseRepositoryImpl(IGenericRepo<T> abstractBaseRepository) {
+       public GenericService(IGenericRepo<T> abstractBaseRepository) {
          this.genericRepo = abstractBaseRepository;
        }
 
