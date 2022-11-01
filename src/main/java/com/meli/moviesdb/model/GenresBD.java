@@ -23,7 +23,6 @@ public class GenresBD extends GenericBaseEntity {
     @NotNull(message = "O campo não pode ser nulo")
     private Double ranking;
 
-//TODO: confirir os tipos depois
     @Column(nullable = false)
     @NotNull(message = "O campo não pode ser nulo")
     private Integer active;

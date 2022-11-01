@@ -44,11 +44,10 @@ public abstract class GenericController<T extends GenericBaseEntity> implements 
         return new ResponseEntity(entity, HttpStatus.OK);
     }
 
-    // TODO: o retorno nao esta dando certo com a string
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete( @PathVariable("id") UUID  id) throws NotFoundException {
         String res = service.delete(id);
-        return new ResponseEntity(res, HttpStatus.NO_CONTENT);
+        return new ResponseEntity(res, HttpStatus.OK);
     }
 }

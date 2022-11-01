@@ -9,18 +9,15 @@ import javax.persistence.*;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 @Getter
 @Setter
 @MappedSuperclass
 public class GenericBaseEntity implements Serializable {
-    //@Id
-    //@GeneratedValue
-    //@Column
-
-
     @Id
     @Column(columnDefinition = "BINARY(16)")
     @GeneratedValue(generator = "custom-uuid")
@@ -37,11 +34,11 @@ public class GenericBaseEntity implements Serializable {
     private UUID id_pk;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
     @Column(nullable = false)
-    private LocalDateTime updatedAt;
+    private Timestamp updatedAt;
 
     public GenericBaseEntity() {
-        this.updatedAt = LocalDateTime.now();
+        this.updatedAt = new Timestamp(new Date().getTime());
     }
 }
