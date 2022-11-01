@@ -12,7 +12,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public abstract class GenericService<T extends GenericBaseEntity>
         implements IGenericService<T> {
     private UUID uuid;
@@ -37,6 +36,7 @@ public abstract class GenericService<T extends GenericBaseEntity>
     @Override
     public Optional<T> findById(UUID id) {
         //System.out.println("CONSOLE:" + id.getClass()); // retorna o tipo do id
+        // TODO: fazer validaçoes de erro
         //uuid = UUID.fromString(id);
         List<T> existObj = findAll().stream()
                 .filter(obj -> obj.getId_pk().equals(id))
@@ -56,5 +56,12 @@ public abstract class GenericService<T extends GenericBaseEntity>
         objEntity.setCreatedAt(obj.get().getCreatedAt());
         objEntity.setId_pk(id);
         return genericRepo.save(objEntity);
+    }
+
+    @Override
+    public String delete(UUID id) {
+        findById(id);
+        genericRepo.deleteById(id);
+        return "Deletado com sucesso!";
     }
 }

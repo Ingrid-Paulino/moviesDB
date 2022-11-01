@@ -41,4 +41,12 @@ public abstract class GenericController<T extends GenericBaseEntity> implements 
         T entity = service.update(objEntity, id);
         return new ResponseEntity(entity, HttpStatus.OK);
     }
+
+    // TODO: o retorno nao esta dando certo com a string
+    @Override
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete( @PathVariable("id") UUID  id) {
+        String res = service.delete(id);
+        return new ResponseEntity(res, HttpStatus.NO_CONTENT);
+    }
 }

@@ -10,5 +10,5 @@ public interface IGenericService<T extends GenericBaseEntity> {
     public abstract List<T> findAll();
     public abstract Optional<T> findById(UUID id);
     public abstract T update(T objEntity, UUID id);
-   // public abstract String delete(UUID id);
+    public abstract String delete(UUID id);
 }
