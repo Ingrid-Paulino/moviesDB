@@ -5,7 +5,7 @@ import com.meli.moviesdb.repository.IGenericRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -25,6 +25,7 @@ public abstract class GenericService<T extends GenericBaseEntity>
 
     @Override
     public T save(T entity) {
+        entity.setCreatedAt(LocalDateTime.now());
         return (T) genericRepo.save(entity);
     }
 
@@ -40,11 +41,20 @@ public abstract class GenericService<T extends GenericBaseEntity>
         List<T> existObj = findAll().stream()
                 .filter(obj -> obj.getId_pk().equals(id))
                 .collect(Collectors.toList());
-        System.out.println("aaa: " + existObj.size());
+        //System.out.println("aaa: " + existObj.size());
 
         if (existObj.isEmpty())
             throw new RuntimeException("falhou!!");
 
         return genericRepo.findById(id);
+    }
+
+    @Override
+    public T update(T objEntity, UUID id) {
+        var obj = findById(id);
+        objEntity.setUpdatedAt(LocalDateTime.now());
+        objEntity.setCreatedAt(obj.get().getCreatedAt());
+        objEntity.setId_pk(id);
+        return genericRepo.save(objEntity);
     }
 }

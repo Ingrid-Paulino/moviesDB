@@ -14,10 +14,13 @@ import javax.persistence.*;
 public class ActorsBD extends GenericBaseEntity {
     @Column(nullable = false)
     private String first_name;
+
     @Column(nullable = false)
     private String last_name;
+
     @Column(nullable = false)
     private Double rating;
+
     @Column(nullable = false)
     private Integer favorite_movie_id_fk;
 }

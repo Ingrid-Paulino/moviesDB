@@ -34,4 +34,11 @@ public abstract class GenericController<T extends GenericBaseEntity> implements 
         Optional<T> entity = service.findById(id);
         return new ResponseEntity(entity, HttpStatus.OK);
     }
+
+    @Override
+    @PutMapping("/{id}")
+    public ResponseEntity<T> update(@RequestBody T objEntity, @PathVariable("id") UUID  id) {
+        T entity = service.update(objEntity, id);
+        return new ResponseEntity(entity, HttpStatus.OK);
+    }
 }

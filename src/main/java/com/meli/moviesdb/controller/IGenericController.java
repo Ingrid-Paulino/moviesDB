@@ -11,4 +11,6 @@ public interface IGenericController<T extends GenericBaseEntity> {
     public abstract ResponseEntity<T> save(T entity);
     public abstract ResponseEntity<List<T>> findAll();
     public abstract ResponseEntity<Optional<T>> findById(UUID id);
+    public abstract ResponseEntity<T> update(T objEntity, UUID id);
+
 }
