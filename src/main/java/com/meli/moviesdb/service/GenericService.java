@@ -1,5 +1,6 @@
 package com.meli.moviesdb.service;
 
+import com.meli.moviesdb.advice.exeption.NotFoundException;
 import com.meli.moviesdb.model.GenericBaseEntity;
 import com.meli.moviesdb.repository.IGenericRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,23 +35,19 @@ public abstract class GenericService<T extends GenericBaseEntity>
     }
 
     @Override
-    public Optional<T> findById(UUID id) {
-        //System.out.println("CONSOLE:" + id.getClass()); // retorna o tipo do id
-        // TODO: fazer validaçoes de erro
-        //uuid = UUID.fromString(id);
+    public Optional<T> findById(UUID id) throws NotFoundException {
         List<T> existObj = findAll().stream()
                 .filter(obj -> obj.getId_pk().equals(id))
                 .collect(Collectors.toList());
-        //System.out.println("aaa: " + existObj.size());
 
         if (existObj.isEmpty())
-            throw new RuntimeException("falhou!!");
+            throw new NotFoundException("Registro não Encontrado");
 
         return genericRepo.findById(id);
     }
 
     @Override
-    public T update(T objEntity, UUID id) {
+    public T update(T objEntity, UUID id) throws NotFoundException {
         var obj = findById(id);
         objEntity.setUpdatedAt(LocalDateTime.now());
         objEntity.setCreatedAt(obj.get().getCreatedAt());
@@ -59,7 +56,7 @@ public abstract class GenericService<T extends GenericBaseEntity>
     }
 
     @Override
-    public String delete(UUID id) {
+    public String delete(UUID id) throws NotFoundException {
         findById(id);
         genericRepo.deleteById(id);
         return "Deletado com sucesso!";

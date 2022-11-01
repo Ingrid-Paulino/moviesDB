@@ -7,6 +7,7 @@ import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -35,9 +36,6 @@ public class GenericBaseEntity implements Serializable {
     )
     private UUID id_pk;
 
-    //@Column(nullable = false)
-    //@Version
-    //private int version;
     @Column(nullable = false)
     private LocalDateTime createdAt;
     @Column(nullable = false)
