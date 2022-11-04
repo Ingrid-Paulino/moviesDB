@@ -32,21 +32,21 @@ public abstract class GenericController<T extends GenericBaseEntity> implements 
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<T>> findById(@PathVariable("id") UUID  id) throws NotFoundException {
+    public ResponseEntity<Optional<T>> findById(@PathVariable("id") Long  id) throws NotFoundException {
         Optional<T> entity = service.findById(id);
         return new ResponseEntity(entity, HttpStatus.OK);
     }
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<T> update(@Valid @RequestBody T objEntity, @PathVariable("id") UUID  id) throws NotFoundException {
+    public ResponseEntity<T> update(@Valid @RequestBody T objEntity, @PathVariable("id") Long  id) throws NotFoundException {
         T entity = service.update(objEntity, id);
         return new ResponseEntity(entity, HttpStatus.OK);
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete( @PathVariable("id") UUID  id) throws NotFoundException {
+    public ResponseEntity<String> delete( @PathVariable("id") Long  id) throws NotFoundException {
         String res = service.delete(id);
         return new ResponseEntity(res, HttpStatus.OK);
     }

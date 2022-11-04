@@ -38,7 +38,7 @@ public abstract class GenericService<T extends GenericBaseEntity>
     }
 
     @Override
-    public Optional<T> findById(UUID id) throws NotFoundException {
+    public Optional<T> findById(Long id) throws NotFoundException {
         List<T> existObj = findAll().stream()
                 .filter(obj -> obj.getId_pk().equals(id))
                 .collect(Collectors.toList());
@@ -47,10 +47,11 @@ public abstract class GenericService<T extends GenericBaseEntity>
             throw new NotFoundException("Registro não Encontrado");
 
         return genericRepo.findById(id);
+        // or return genericRepo.findById(id).orElse(null);
     }
 
     @Override
-    public T update(T objEntity, UUID id) throws NotFoundException {
+    public T update(T objEntity, Long id) throws NotFoundException {
         var obj = findById(id);
         objEntity.setUpdatedAt(new Timestamp(new Date().getTime()));
         objEntity.setCreatedAt(obj.get().getCreatedAt());
@@ -59,7 +60,7 @@ public abstract class GenericService<T extends GenericBaseEntity>
     }
 
     @Override
-    public String delete(UUID id) throws NotFoundException {
+    public String delete(Long id) throws NotFoundException {
         findById(id);
         genericRepo.deleteById(id);
         return "Deletado com sucesso!";

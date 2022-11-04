@@ -1,7 +1,6 @@
 package com.meli.moviesdb.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -16,22 +15,26 @@ import java.util.UUID;
 
 @Getter
 @Setter
+//@NoArgsConstructor
+@AllArgsConstructor
 @MappedSuperclass
 public class GenericBaseEntity implements Serializable {
+
+    //@Column(columnDefinition = "BINARY(16)")
+   // @GeneratedValue(generator = "custom-uuid")
+    //@GenericGenerator(
+         //   name = "custom-uuid",
+         //   strategy = "org.hibernate.id.UUIDGenerator",
+         //   parameters = {
+           //         @Parameter(
+           //                 name = "uuid_gen_strategy_class",
+            //               value = "org.hibernate.id.uuid.CustomVersionOneStrategy"
+            //        )
+           // }
+   //)
     @Id
-    @Column(columnDefinition = "BINARY(16)")
-    @GeneratedValue(generator = "custom-uuid")
-    @GenericGenerator(
-            name = "custom-uuid",
-            strategy = "org.hibernate.id.UUIDGenerator",
-            parameters = {
-                    @Parameter(
-                            name = "uuid_gen_strategy_class",
-                            value = "org.hibernate.id.uuid.CustomVersionOneStrategy"
-                    )
-            }
-    )
-    private UUID id_pk;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_pk;
 
     @Column(nullable = false)
     private Timestamp createdAt;

@@ -10,5 +10,5 @@ import java.util.UUID;
 //https://stackoverflow.com/questions/19417670/using-generics-in-spring-data-jpa-repositories
 @Repository
 @NoRepositoryBean //para que o JPA não tente encontrar uma implementação para o repositório!
-public interface IGenericRepo<T extends GenericBaseEntity> extends JpaRepository<T, UUID> {
+public interface IGenericRepo<T extends GenericBaseEntity> extends JpaRepository<T, Long> {
 }

@@ -11,7 +11,7 @@ import java.util.UUID;
 public interface IGenericController<T extends GenericBaseEntity> {
     public abstract ResponseEntity<T> save(T entity);
     public abstract ResponseEntity<List<T>> findAll();
-    public abstract ResponseEntity<Optional<T>> findById(UUID id) throws NotFoundException;
-    public abstract ResponseEntity<T> update(T objEntity, UUID id) throws NotFoundException;
-    public abstract ResponseEntity<String> delete(UUID id) throws NotFoundException;
+    public abstract ResponseEntity<Optional<T>> findById(Long id) throws NotFoundException;
+    public abstract ResponseEntity<T> update(T objEntity, Long id) throws NotFoundException;
+    public abstract ResponseEntity<String> delete(Long id) throws NotFoundException;
 }
